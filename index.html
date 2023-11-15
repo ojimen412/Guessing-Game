@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <style>@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+/* *{
+  margin: 0;
+  padding: 0;
+} */
+body {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #e5e5e5;
+}
+main {
+  width: 80%;
+  /*     background-color: red; */
+  margin: auto;
+}
+h1 {
+  background-color: #000000;
+  border-radius: 1rem;
+  font-family: "Varela Round", sans-serif;
+  font-size: 5vw;
+  color: white;
+}
+input.letter-input {
+  text-align: center;
+  /*   width: 20px ;    */
+  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 50%);
+  background-color: white;
+  font-size: 2rem;
+  width: calc(70% / 5);
+  margin: 1rem 2%;
+}
+table {
+  margin: auto;
+}
+tr {
+  vertical-align: top;
+}
+th,
+td {
+  padding: 1rem;
+  text-align: center;
+  border: 1px dashed black;
+  background-color: #fca311;
+}
+</style>
+</head>
+<body>
+    <main>
+  <h2>Choose Your Character</h2>
+  <p>eoooo <br> eroiok</p>
+  <img src="" alt="character-selector" id="character-image" width="300" height="300">
+  <select name="image-choice" id="image-select">
+    <option value="" disabled selected>Select an image</option>
+    <option value="astro-raccoon">Space Raccoon
+    <option value="block-raccoon">Pixel Raccoon
+    <option value="sitting-raccoon">Patience Raccoon
+    <option value="nerd-raccoon">Nerd Raccoon
+    <option value="rockstar-raccoon"> Rocker Raccoon
+  </select>
+  <h1>Guess The Password</h1>
+  <form id="password-form">
+    <!--     <input class="letter-input" type="text" maxLength="1">
+    <input class="letter-input" type="text" maxLength="1">
+    <input class="letter-input" type="text" maxLength="1">
+    <input class="letter-input" type="text" maxLength="1">
+    <input class="letter-input" type="text" maxLength="1"> -->
+
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Wrong Letter</th>
+        <th>Wrong Letter</th>
+        <th>Wrong Letter</th>
+        <th>Wrong Letter</th>
+        <th>Wrong Letter</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>X:<br><br></td>
+        <td>X:</td>
+        <td>X:</td>
+        <td>X:<br><br></td>
+        <td>X:</td>
+      </tr>
+    </tbody>
+
+  </table>
+</main>
+    <script>const passwordForm = document.getElementById("password-form");
+        const imageSelect = document.getElementById("image-select");
+        const characterImg = document.getElementById("character-image");
+        const astroRaccSrc =
+          "https://drive.google.com/uc?export=view&id=1m3NHf5F4axirUcLHyAdXdOBDdLMnUMpA";
+        const blockRaccSrc =
+          "https://drive.google.com/uc?export=view&id=1okl-7XbFe_7D-QfxA0uhgMxs5Nm0rZZt";
+        const sittingRaccSrc =
+          "https://drive.google.com/uc?export=view&id=1m1YBDlqodci7LgeK2YXS9R45T2HungoC";
+        const nerdRaccSrc =
+          "https://drive.google.com/uc?export=view&id=1fiTjSCCfqO_ccBdP5ZxB_23az0AXkYX_";
+        const rockRaccSrc =
+          "https://drive.google.com/uc?export=view&id=1sidY_sJFV41Vtz466Q7WJguRx_QZYjPj";
+        const characterSelectSrc =
+          "https://drive.google.com/uc?export=view&id=1DFBG-1RJz4sp5I8jLKM0jykX2U17Vbyx";
+        
+        characterImg.src = characterSelectSrc;
+        
+        imageSelect.addEventListener("change", function () {
+          console.log(this.value);
+          if (this.value === "astro-raccoon") {
+            characterImg.src = astroRaccSrc;
+          }
+          if (this.value === "character-selector") {
+            characterImg.src = characterSelectSrc;
+          }
+          if (this.value === "block-raccoon") {
+            characterImg.src = blockRaccSrc;
+          }
+          if (this.value === "sitting-raccoon") {
+            characterImg.src = sittingRaccSrc;
+          }
+          if (this.value === "nerd-raccoon") {
+            characterImg.src = nerdRaccSrc;
+          }
+          if (this.value === "rockstar-raccoon") {
+            characterImg.src = rockRaccSrc;
+          }
+        });
+        let phrase = "ghost";
+        
+        let index = 0;
+        
+        for (let char of phrase) {
+          // console.log("hello");
+          const letterInput = document.createElement("input");
+          letterInput.type = "text";
+          letterInput.maxLength = "1";
+          letterInput.classList.add("letter-input");
+          letterInput.id = index.toString();
+          passwordForm.appendChild(letterInput);
+          index++;
+        }
+        
+        passwordForm.addEventListener("change", function (event) {
+          // console.log(event.target.value);
+          const thisInput = event.target;
+          const ghost = thisInput.value;
+          console.log(ghost);
+          console.log(thisInput.id);
+        
+          if (ghost === phrase[thisInput.id]) {
+            console.log("You guessed correct!");
+            thisInput.disabled = true;
+            thisInput.placeholder = ghost;
+        //    <-- makes box turn green -->
+          }
+          if (ghost !== phrase[thisInput.id]) {
+            console.log("You guessed wrong!");
+            thisInput.disabled = false;
+        //    <-- puts character in the "wrong letter" box below -->
+            
+          }
+        });
+        </script>
+</body>
+</html>
